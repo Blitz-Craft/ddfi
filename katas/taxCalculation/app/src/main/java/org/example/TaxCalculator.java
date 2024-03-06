@@ -6,24 +6,44 @@ package org.example;
 public class TaxCalculator {
     public static void main(String[] args) {
         System.out.println();
+
     }
 
-
     public double calculateTaxFor(Product product) {
+        var taxAmount = 0.0;
 
         if (!product.getType().equalsIgnoreCase("Book") &&
                 !product.getType().equalsIgnoreCase("Food") &&
-                !product.getType().equalsIgnoreCase("Medicine")
-        ) return product.isImported() ? Math.round(product.getPrice() * 15.0 / 100) + 0.05 : Math.round(product.getPrice() * 10.0 / 100) + 0.05;
+                !product.getType().equalsIgnoreCase("Medicine")) {
+            if (product.isImported()) {
+                taxAmount = getTaxAmount(product, 15.0);
+            } else {
+                taxAmount = getTaxAmount(product, 10.0);
+            }
+            return taxAmount;
+        }
 
         if (product.getType().equalsIgnoreCase("Book") ||
                 product.getType().equalsIgnoreCase("Food") ||
-                product.getType().equalsIgnoreCase("Medicine")
-        ) return product.isImported() ? Math.round(product.getPrice() * 5.0 / 100) + 0.05 : 0.0;
+                product.getType().equalsIgnoreCase("Medicine")) {
+            if (product.isImported()) {
+                taxAmount = getTaxAmount(product, 5.0);
+            } else {
+                taxAmount = getTaxAmount(product, 0.0);
+            }
+            return taxAmount;
 
+        }
 
-// if (product.getImport()
         return 0.0;
+
+    }
+
+    private static double getTaxAmount(Product product, double tax) {
+        double taxAmount;
+        var basicTax = product.getPrice() * tax / 100;
+        taxAmount = Math.ceil(basicTax * 20.0) / 20.0;
+        return taxAmount;
     }
 
 }
