@@ -3,11 +3,9 @@
  */
 package org.example;
 
-public class TaxCalculator {
-    public static void main(String[] args) {
-        System.out.println();
+import java.util.List;
 
-    }
+public class TaxCalculator {
 
     public double calculateTaxFor(Product product) {
         var taxAmount = 0.0;
@@ -44,6 +42,15 @@ public class TaxCalculator {
         var basicTax = product.getPrice() * tax / 100;
         taxAmount = Math.ceil(basicTax * 20.0) / 20.0;
         return taxAmount;
+    }
+
+    private double getTotalTax(List<Product> productList){
+        var totalTax = 0.0;
+        for (int productIndex=0; productIndex < productList.size(); productIndex++){
+            var product = productList.get(productIndex);
+            totalTax += calculateTaxFor(product);
+        }
+        return totalTax;
     }
 
 }

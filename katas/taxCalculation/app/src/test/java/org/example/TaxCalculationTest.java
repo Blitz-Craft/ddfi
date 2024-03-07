@@ -61,5 +61,14 @@ public class TaxCalculationTest  {
         Assertions.assertEquals(1.05, taxCalculation.calculateTaxFor(product));
     }
 
+    @Test
+    void this_will_return_total_tax_for_non_imported_book() {
+        var product = new Product("Java Programming for Beginner", 12.49, false, "Book");
+        var taxCalculation = new TaxCalculator();
+        Assertions.assertEquals(0.0, taxCalculation.calculateTaxFor(product));
+    }
+
+
+
 
 }
