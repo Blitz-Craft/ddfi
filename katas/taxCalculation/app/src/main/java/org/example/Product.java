@@ -4,9 +4,13 @@ public class Product {
     private String name;
     private Double price;
     private boolean isImported;
-    private String type;
+    private Type type;
 
-    public Product(String name, Double price, boolean isImported, String type) {
+
+    public enum Type{ BOOK, FOOD, MEDICINE, OTHER
+
+    }
+    public Product(String name, Double price, boolean isImported, Type type) {
         this.name = name;
         this.price = price;
         this.isImported = isImported;
@@ -37,11 +41,11 @@ public class Product {
         isImported = imported;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

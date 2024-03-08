@@ -10,30 +10,24 @@ public class TaxCalculator {
     public double calculateTaxFor(Product product) {
         var taxAmount = 0.0;
 
-        if (!product.getType().equalsIgnoreCase("Book") &&
-                !product.getType().equalsIgnoreCase("Food") &&
-                !product.getType().equalsIgnoreCase("Medicine")) {
-            if (product.isImported()) {
-                taxAmount = getTaxAmount(product, 15.0);
-            } else {
-                taxAmount = getTaxAmount(product, 10.0);
+        return switch (product.getType()) {
+            case BOOK, FOOD, MEDICINE -> {
+                if (product.isImported()) {
+                    taxAmount = getTaxAmount(product, 5.0);
+                } else {
+                    taxAmount = getTaxAmount(product, 0.0);
+                }
+                yield taxAmount;
             }
-            return taxAmount;
-        }
-
-        if (product.getType().equalsIgnoreCase("Book") ||
-                product.getType().equalsIgnoreCase("Food") ||
-                product.getType().equalsIgnoreCase("Medicine")) {
-            if (product.isImported()) {
-                taxAmount = getTaxAmount(product, 5.0);
-            } else {
-                taxAmount = getTaxAmount(product, 0.0);
+            case OTHER -> {
+                if (product.isImported()) {
+                    taxAmount = getTaxAmount(product, 15.0);
+                } else {
+                    taxAmount = getTaxAmount(product, 10.0);
+                }
+                yield taxAmount;
             }
-            return taxAmount;
-
-        }
-
-        return 0.0;
+        };
 
     }
 

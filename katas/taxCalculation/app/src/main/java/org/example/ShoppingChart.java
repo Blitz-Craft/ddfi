@@ -35,9 +35,9 @@ public class ShoppingChart {
 
     public static void main(String[] args) {
         var shoppingChart = new ShoppingChart();
-        shoppingChart.add(new Product("Java Programming for Beginner", 12.49, false, "Book"));
-        shoppingChart.add(new Product("Music Instrument", 14.99, false, "DVD"));
-        var product3 = new Product("Chocolate", 0.85, false, "Food");
+        shoppingChart.add(new Product("Java Programming for Beginner", 12.49, false, Product.Type.BOOK));
+        shoppingChart.add(new Product("Music Instrument", 14.99, false, Product.Type.OTHER));
+        var product3 = new Product("Chocolate", 0.85, false, Product.Type.FOOD);
         shoppingChart.add(product3);
 
         shoppingChart.printTicket();
