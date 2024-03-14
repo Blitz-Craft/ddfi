@@ -47,3 +47,4 @@ The total price including taxes is calculated as follows:
    &nbsp;&nbsp;&nbsp;Total: 74.68<br/><br/>
 
 2. Add a new Tax for Luxury Product of 10%. Any kind of Product can be a Luxury Product.
+3. Healthy Tax. If the weight of Sugar in the food is greater than 5% of the total weight of the food, an extra tax of 10% is applied.
