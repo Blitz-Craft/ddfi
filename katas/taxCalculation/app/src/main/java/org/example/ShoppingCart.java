@@ -7,7 +7,7 @@ import java.util.List;
 public class ShoppingCart {
 
     private static final DecimalFormat df = new DecimalFormat("0.00");
-    private List<Product> products = new ArrayList<>();
+    private final List<Product> products = new ArrayList<>();
 
     public void add(Product product) {
         products.add(product);

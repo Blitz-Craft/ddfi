@@ -28,7 +28,6 @@ public class TaxCalculator {
             case Product product1 when !product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 20.0);
             default -> getTaxAmount(product, 10.0);
         };
-
     }
 
     private static double getTaxAmount(Product product, double tax) {
