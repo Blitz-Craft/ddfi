@@ -36,7 +36,7 @@ public class ShoppingCart {
     public static void main(String[] args) {
         var shoppingChart = new ShoppingCart();
         shoppingChart.add(new Book("Java Programming for Beginner", 12.49, false));
-        shoppingChart.add(new OtherProduct("Music Instrument", 14.99, false));
+        shoppingChart.add(new Product("Music Instrument", 14.99, false));
         var product3 = new Food("Chocolate", 0.85, false);
         shoppingChart.add(product3);
 

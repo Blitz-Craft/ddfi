@@ -14,7 +14,9 @@ public class TaxCalculator {
             case Food food -> getTaxAmount(food, 0.0);
             case Medicine medicine when medicine.isImported() -> getTaxAmount(medicine, 5.0);
             case Medicine medicine -> getTaxAmount(medicine, 0.0);
-            case Product product1 when product1.isImported() -> getTaxAmount(product1, 15.0);
+            case Product product1 when product1.isImported() && !product1.isLuxury() -> getTaxAmount(product1, 15.0);
+            case Product product1 when product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 25.0);
+            case Product product1 when !product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 20.0);
             default -> getTaxAmount(product, 10.0);
         };
 

@@ -28,9 +28,9 @@ public class TaxCalculationTest  {
 
     @Test
     void this_will_return_total_tax_for_other_than_book_food_and_medicine() {
-        var otherProduct = new OtherProduct("iPhone", 900.0, false);
+        var product = new Product("iPhone", 900.0, false);
         var taxCalculation = new TaxCalculator();
-        Assertions.assertEquals(90.00, taxCalculation.calculateTaxFor(otherProduct));
+        Assertions.assertEquals(90.00, taxCalculation.calculateTaxFor(product));
     }
 
     @Test
@@ -42,9 +42,9 @@ public class TaxCalculationTest  {
 
     @Test
     void this_will_return_total_tax_for_imported_other() {
-        var otherProduct = new OtherProduct("Samsung 42 inch", 234.0, true);
+        var product = new Product("Samsung 42 inch", 234.0, true);
         var taxCalculation = new TaxCalculator();
-        Assertions.assertEquals(35.1, taxCalculation.calculateTaxFor(otherProduct));
+        Assertions.assertEquals(35.1, taxCalculation.calculateTaxFor(product));
     }
     
     @Test
@@ -56,9 +56,9 @@ public class TaxCalculationTest  {
 
     @Test
     void this_will_return_total_tax_with_rounded_5_cents_for_other() {
-        var otherProduct = new OtherProduct("Wireless Mouse", 10.1, false);
+        var product = new Product("Wireless Mouse", 10.1, false);
         var taxCalculation = new TaxCalculator();
-        Assertions.assertEquals(1.05, taxCalculation.calculateTaxFor(otherProduct));
+        Assertions.assertEquals(1.05, taxCalculation.calculateTaxFor(product));
     }
 
     @Test
@@ -66,6 +66,20 @@ public class TaxCalculationTest  {
         var book = new Book("Java Programming for Beginner", 12.49, false);
         var taxCalculation = new TaxCalculator();
         Assertions.assertEquals(0.0, taxCalculation.calculateTaxFor(book));
+    }
+
+    @Test
+    void this_will_return_total_tax_for_imported_and_luxury_for_other() {
+        var product = new Product("Louis Vuitton", 1000.0, true, true);
+        var taxCalculation = new TaxCalculator();
+        Assertions.assertEquals(250.0, taxCalculation.calculateTaxFor(product));
+    }
+
+    @Test
+    void this_will_return_total_tax_for_non_imported_and_luxury_for_other() {
+        var product = new Product("ZARA", 1000.0, false, true);
+        var taxCalculation = new TaxCalculator();
+        Assertions.assertEquals(200.0, taxCalculation.calculateTaxFor(product));
     }
 
 }
