@@ -7,9 +7,7 @@ public class Product {
     private boolean isLuxury;
 
     public Product(String name, Double price, boolean isImported) {
-        this.name = name;
-        this.price = price;
-        this.isImported = isImported;
+        this(name, price, isImported, false);
     }
 
     public Product(String name, Double price, boolean isImported, boolean isLuxury) {

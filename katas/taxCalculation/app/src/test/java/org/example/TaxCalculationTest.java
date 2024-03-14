@@ -13,6 +13,13 @@ public class TaxCalculationTest  {
     }
 
     @Test
+    void this_will_return_total_tax_for_luxury_book() {
+        var book = new Book("Harry Potter Collectors Edition", 2000.0, false, true);
+        var taxCalculation = new TaxCalculator();
+        Assertions.assertEquals(200.0, taxCalculation.calculateTaxFor(book));
+    }
+
+    @Test
     void this_will_return_total_tax_for_food() {
         var food = new Food("Chicken", 4.0, false);
         var taxCalculation = new TaxCalculator();

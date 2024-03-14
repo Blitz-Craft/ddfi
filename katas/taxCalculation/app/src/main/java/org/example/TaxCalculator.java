@@ -8,12 +8,21 @@ public class TaxCalculator {
     public double calculateTaxFor(Product product) {
 
         return switch (product) {
-            case Book book when book.isImported() -> getTaxAmount(book, 5.0);
-            case Book book ->  getTaxAmount(book, 0.0);
-            case Food food when food.isImported() -> getTaxAmount(food, 5.0);
-            case Food food -> getTaxAmount(food, 0.0);
-            case Medicine medicine when medicine.isImported() -> getTaxAmount(medicine, 5.0);
-            case Medicine medicine -> getTaxAmount(medicine, 0.0);
+            case Book book when book.isImported() && !book.isLuxury()-> getTaxAmount(book, 5.0);
+            case Book book when book.isImported() && book.isLuxury()-> getTaxAmount(book, 15.0);
+            case Book book when !book.isImported() && !book.isLuxury()-> getTaxAmount(book, 0.0);
+            case Book book when !book.isImported() && book.isLuxury()-> getTaxAmount(book, 10.0);
+
+            case Food food when food.isImported() && !food.isLuxury()-> getTaxAmount(food, 5.0);
+            case Food food when food.isImported() && food.isLuxury()-> getTaxAmount(food, 15.0);
+            case Food food when !food.isImported() && !food.isLuxury()-> getTaxAmount(food, 0.0);
+            case Food food when !food.isImported() && food.isLuxury()-> getTaxAmount(food, 10.0);
+
+            case Medicine medicine when medicine.isImported() && !medicine.isLuxury()-> getTaxAmount(medicine, 5.0);
+            case Medicine medicine when medicine.isImported() && medicine.isLuxury()-> getTaxAmount(medicine, 15.0);
+            case Medicine medicine when !medicine.isImported() && !medicine.isLuxury() -> getTaxAmount(medicine, 0.0);
+            case Medicine medicine when !medicine.isImported() && medicine.isLuxury()-> getTaxAmount(medicine, 10.0);
+
             case Product product1 when product1.isImported() && !product1.isLuxury() -> getTaxAmount(product1, 15.0);
             case Product product1 when product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 25.0);
             case Product product1 when !product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 20.0);
