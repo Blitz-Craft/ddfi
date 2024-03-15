@@ -6,6 +6,8 @@ public class Product {
     private boolean isImported;
     private boolean isLuxury;
 
+    private Double weight;
+
     public Product(String name, Double price, boolean isImported) {
         this(name, price, isImported, false);
     }
@@ -47,4 +49,11 @@ public class Product {
         isLuxury = luxury;
     }
 
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double wight) {
+        this.weight = wight;
+    }
 }

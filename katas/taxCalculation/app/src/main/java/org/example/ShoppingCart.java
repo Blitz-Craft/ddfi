@@ -40,6 +40,7 @@ public class ShoppingCart {
         var product3 = new Food("Chocolate", 0.85, false);
         shoppingChart.add(product3);
 
+
         shoppingChart.printTicket();
     }
 }

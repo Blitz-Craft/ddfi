@@ -6,49 +6,12 @@ package org.example;
 public class TaxCalculator {
 
     public double calculateTaxFor(Product product) {
-
-//        return switch (product) {
-//            case Book book when book.isImported() && !book.isLuxury()-> getTaxAmount(book, 5.0);
-//            case Book book when book.isImported() && book.isLuxury()-> getTaxAmount(book, 15.0);
-//            case Book book when !book.isImported() && !book.isLuxury()-> getTaxAmount(book, 0.0);
-//            case Book book when !book.isImported() && book.isLuxury()-> getTaxAmount(book, 10.0);
-//
-//            case Food food when food.isImported() && !food.isLuxury()-> getTaxAmount(food, 5.0);
-//            case Food food when food.isImported() && food.isLuxury()-> getTaxAmount(food, 15.0);
-//            case Food food when !food.isImported() && !food.isLuxury()-> getTaxAmount(food, 0.0);
-//            case Food food when !food.isImported() && food.isLuxury()-> getTaxAmount(food, 10.0);
-//
-//            case Medicine medicine when medicine.isImported() && !medicine.isLuxury()-> getTaxAmount(medicine, 5.0);
-//            case Medicine medicine when medicine.isImported() && medicine.isLuxury()-> getTaxAmount(medicine, 15.0);
-//            case Medicine medicine when !medicine.isImported() && !medicine.isLuxury() -> getTaxAmount(medicine, 0.0);
-//            case Medicine medicine when !medicine.isImported() && medicine.isLuxury()-> getTaxAmount(medicine, 10.0);
-//
-//            case Product product1 when product1.isImported() && !product1.isLuxury() -> getTaxAmount(product1, 15.0);
-//            case Product product1 when product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 25.0);
-//            case Product product1 when !product1.isImported() && product1.isLuxury() -> getTaxAmount(product1, 20.0);
-//            default -> getTaxAmount(product, 10.0);
-//        };
-        return getTaxAmount(product);
-    }
-
-    private static double getTaxAmount(Product product) {
         double taxImplied = 0;
-        switch (product) {
-            case Book book -> taxImplied = 0;
-            case Food food -> taxImplied = 0;
-            case Medicine medicine -> taxImplied = 0;
-            default -> taxImplied += 10;
-        }
-
-        if (product.isImported()){
-            taxImplied += 5.0;
-        }
-
-        if (product.isLuxury()){
-            taxImplied += 10.0;
-        }
-
         double taxAmount;
+
+        taxImplied += ValueAddedForTaxCalculator.calculatedTaxFor(product);
+        taxImplied += TaxCalculatorForImported.taxCalculateFor(product);
+        taxImplied += TaxCalculatorForLuxury.taxCalculateFor(product);
 
         var basicTax = product.getPrice() * taxImplied / 100;
         taxAmount = Math.ceil(basicTax * 20.0) / 20.0;
