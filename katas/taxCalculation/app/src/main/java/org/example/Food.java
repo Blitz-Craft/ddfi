@@ -1,8 +1,14 @@
 package org.example;
 
 public class Food extends Product{
+    private Double percentageOfSugar = 0.0;
+    public Double getPercentageOfSugar() {
+        return percentageOfSugar;
+    }
 
-    private Double sugarWight;
+    public void setPercentageOfSugar(Double percentageOfSugar) {
+        this.percentageOfSugar = percentageOfSugar;
+    }
 
     public Food(String name, Double price, boolean isImported, boolean isLuxury) {
         super(name, price, isImported, isLuxury);
@@ -12,11 +18,4 @@ public class Food extends Product{
         super(name, price, isImported, false);
     }
 
-    public Double getSugarWight() {
-        return sugarWight;
-    }
-
-    public void setSugarWight(Double sugarWight) {
-        this.sugarWight = sugarWight;
-    }
 }

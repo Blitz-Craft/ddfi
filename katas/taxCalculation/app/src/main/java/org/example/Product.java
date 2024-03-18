@@ -5,7 +5,6 @@ public class Product {
     private Double price;
     private boolean isImported;
     private boolean isLuxury;
-
     private Double weight;
 
     public Product(String name, Double price, boolean isImported) {

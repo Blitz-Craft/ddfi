@@ -25,4 +25,19 @@ public class ValueAddedTaxTest {
         var product = new Product("iPhone", 900.0, false);
         Assertions.assertEquals(10.0, ValueAddedForTaxCalculator.calculatedTaxFor(product));
     }
+
+    @Test
+    void ten_percent_tax_for_food_which_contains_more_sugar() {
+        var food = new Food("Donut", 4.0, false);
+        food.setWeight(100.0);
+        food.setPercentageOfSugar(6.0);
+        Assertions.assertEquals(10.0, ValueAddedForTaxCalculator.calculatedTaxFor(food));
+    }
+    @Test
+    void no_tax_for_food_which_contains_less_sugar() {
+        var food = new Food("Biscuit", 4.0, false);
+        food.setWeight(100.0);
+        food.setPercentageOfSugar(5.0);
+        Assertions.assertEquals(0.0, ValueAddedForTaxCalculator.calculatedTaxFor(food));
+    }
 }

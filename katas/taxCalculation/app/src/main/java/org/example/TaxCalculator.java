@@ -14,8 +14,13 @@ public class TaxCalculator {
         taxImplied += TaxCalculatorForLuxury.taxCalculateFor(product);
 
         var basicTax = product.getPrice() * taxImplied / 100;
-        taxAmount = Math.ceil(basicTax * 20.0) / 20.0;
+        taxAmount = roundForFiveCent(basicTax);
         return taxAmount;
+    }
+
+    private double roundForFiveCent(double basicTax){
+
+        return Math.ceil(basicTax * 20.0) / 20.0;
     }
 
 }
