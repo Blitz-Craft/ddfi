@@ -15,13 +15,13 @@ public class ShoppingCart {
 
     public void printTicket() {
 
-        var taxCalc = new TaxCalculator();
+        var taxCalc = new PriceCalculator();
         var totalPayment = 0.0;
         var amountWithoutTax = 0.0;
         var priceWithTax = 0.0;
         for (Product product : products) {
-            priceWithTax = taxCalc.calculateTaxFor(product) + product.getPrice();
-            totalPayment += taxCalc.calculateTaxFor(product) + product.getPrice();
+            priceWithTax = taxCalc.calculatePriceFor(product) + product.getPrice();
+            totalPayment += taxCalc.calculatePriceFor(product) + product.getPrice();
             amountWithoutTax += product.getPrice();
 
             System.out.print(product.getName() + " : ");

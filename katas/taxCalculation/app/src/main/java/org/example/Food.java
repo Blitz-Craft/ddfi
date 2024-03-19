@@ -2,6 +2,9 @@ package org.example;
 
 public class Food extends Product{
     private Double percentageOfSugar = 0.0;
+
+    public static final double SUGAR_PERCENTAGE_LIMIT = 5.0;
+
     public Double getPercentageOfSugar() {
         return percentageOfSugar;
     }

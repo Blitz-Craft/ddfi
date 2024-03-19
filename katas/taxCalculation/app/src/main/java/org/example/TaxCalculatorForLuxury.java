@@ -1,11 +1,7 @@
 package org.example;
 
 public class TaxCalculatorForLuxury {
-    public static double taxCalculateFor(Product product){
-        double taxImplied = 0;
-        if (product.isLuxury()) {
-            taxImplied += 10.0;
-        }
-        return taxImplied;
+    public static double calculateTaxFor(Product product){
+        return product.isLuxury() ? Constant.LUXURY_TAX : Constant.NO_TAX;
     }
 }
