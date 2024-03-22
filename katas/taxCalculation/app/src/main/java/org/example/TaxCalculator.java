@@ -3,30 +3,19 @@
  */
 package org.example;
 
-import java.util.List;
-
 public class TaxCalculator {
 
     public double calculateTaxFor(Product product) {
-        var taxAmount = 0.0;
 
-        return switch (product.getType()) {
-            case BOOK, FOOD, MEDICINE -> {
-                if (product.isImported()) {
-                    taxAmount = getTaxAmount(product, 5.0);
-                } else {
-                    taxAmount = getTaxAmount(product, 0.0);
-                }
-                yield taxAmount;
-            }
-            case OTHER -> {
-                if (product.isImported()) {
-                    taxAmount = getTaxAmount(product, 15.0);
-                } else {
-                    taxAmount = getTaxAmount(product, 10.0);
-                }
-                yield taxAmount;
-            }
+        return switch (product) {
+            case Book book when book.isImported() -> getTaxAmount(book, 5.0);
+            case Book book ->  getTaxAmount(book, 0.0);
+            case Food food when food.isImported() -> getTaxAmount(food, 5.0);
+            case Food food -> getTaxAmount(food, 0.0);
+            case Medicine medicine when medicine.isImported() -> getTaxAmount(medicine, 5.0);
+            case Medicine medicine -> getTaxAmount(medicine, 0.0);
+            case Product product1 when product1.isImported() -> getTaxAmount(product1, 15.0);
+            default -> getTaxAmount(product, 10.0);
         };
 
     }
@@ -36,15 +25,6 @@ public class TaxCalculator {
         var basicTax = product.getPrice() * tax / 100;
         taxAmount = Math.ceil(basicTax * 20.0) / 20.0;
         return taxAmount;
-    }
-
-    private double getTotalTax(List<Product> productList){
-        var totalTax = 0.0;
-        for (int productIndex=0; productIndex < productList.size(); productIndex++){
-            var product = productList.get(productIndex);
-            totalTax += calculateTaxFor(product);
-        }
-        return totalTax;
     }
 
 }
