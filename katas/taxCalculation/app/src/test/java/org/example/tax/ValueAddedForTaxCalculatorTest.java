@@ -1,9 +1,13 @@
-package org.example;
+package org.example.tax;
 
+import org.example.Book;
+import org.example.Food;
+import org.example.Medicine;
+import org.example.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class ValueAddedTaxTest {
+public class ValueAddedForTaxCalculatorTest {
 
     @Test
     void no_tax_for_books() {

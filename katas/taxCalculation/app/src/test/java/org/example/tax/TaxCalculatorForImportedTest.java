@@ -1,9 +1,11 @@
-package org.example;
+package org.example.tax;
 
+import org.example.Book;
+import org.example.Food;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TaxCalculationForImportedTest {
+public class TaxCalculatorForImportedTest {
     @Test
     void five_percent_tax_for_imported_product() {
         var book = new Book("Guardian of Galaxy", 10.0, true);

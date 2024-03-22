@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.tax.TaxAmountCalculator;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +16,12 @@ public class ShoppingCart {
     }
 
     public void printTicket() {
-
-        var taxCalc = new PriceCalculator();
         var totalPayment = 0.0;
         var amountWithoutTax = 0.0;
         var priceWithTax = 0.0;
         for (Product product : products) {
-            priceWithTax = taxCalc.calculatePriceFor(product) + product.getPrice();
-            totalPayment += taxCalc.calculatePriceFor(product) + product.getPrice();
+            priceWithTax = TaxAmountCalculator.calculateFor(product) + product.getPrice();
+            totalPayment += priceWithTax;
             amountWithoutTax += product.getPrice();
 
             System.out.print(product.getName() + " : ");
