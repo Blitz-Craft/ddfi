@@ -1,22 +1,16 @@
 package org.example;
 
 public class Rectangle {
-    Double width;
-    Double length;
+    private final double width;
+    private final double length;
 
     public Rectangle(double width, double length) {
         this.width = width;
         this.length = length;
     }
 
-    public Rectangle() {
-
-    }
-
-    Double getArea(){
-        return width * length;
-    }
-    Double getArea(Double width, Double length){
+    //
+    double getArea(){
         return width * length;
     }
 
