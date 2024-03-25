@@ -28,7 +28,7 @@ public class GeometricShapeTest {
 
     @Test
     void this_will_return_area_of_triangle() {
-        Triangle triangle = new Triangle(2.0, 6.0);
+        Triangle triangle = new Triangle(3.0, 4.0, 5.0);
         Assertions.assertEquals(12.0, triangle.getArea());
 
     }
