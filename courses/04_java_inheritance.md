@@ -205,6 +205,123 @@ In the `TestPolymorphism` class:<br/>
 This behavior showcases polymorphism in action. Despite `myCar` being a `Vehicle` reference, Java uses the actual object type (`Car`) at runtime to determine which `startEngine()` method to execute. 
 This allows to write more general and flexible code, where methods of subclass objects can be called through references of their superclass type, leveraging the power of polymorphism to enhance code reusability and scalability.
 
+### Casting in Java
+In Java, casting is the process of converting one object reference type into another. 
+When working with object-oriented programming, especially within class hierarchies, casting becomes crucial for manipulating references and invoking the correct methods.
+There are two main types of casting in Java: upcasting and downcasting.
+
+#### Upcasting
+Upcasting is the automatic conversion of a subclass type to a superclass type. 
+This type of casting is safe and implicit because the subclass is always an instance of its superclass. 
+Upcasting is commonly used in polymorphism, where a subclass object is treated as an instance of its superclass, allowing for generalized code that can work with any subclass.
+
+Example:
+
+```java
+class Animal {
+    void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog barks.");
+    }
+}
+
+public class TestCasting {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        Animal myAnimal = myDog; // Upcasting: Dog -> Animal
+        myAnimal.eat();
+    }
+}
+```
+#### Downcasting
+Downcasting is the conversion of a superclass type to a subclass type. 
+Unlike upcasting, downcasting is explicit and can be risky, as it requires an explicit type cast in the code. 
+Downcasting is necessary when you need to access subclass-specific methods or fields from a reference that is currently of a superclass type.
+
+Example:
+
+```java
+class Animal {
+    void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog barks.");
+    }
+}
+
+public class TestCasting {
+    public static void main(String[] args) {
+        Animal myAnimal = new Dog(); // Upcasting
+        Dog myDog = (Dog) myAnimal;  // Downcasting
+        myDog.bark();
+    }
+}
+```
+
+When performing downcasting, it's essential to ensure that the object being cast is actually an instance of the target subclass to avoid a ClassCastException. 
+The instanceof operator can be used to check this:
+
+```java
+class Animal {
+    void eat() {
+        System.out.println("This animal eats food.");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("The dog barks.");
+    }
+}
+
+public class TestCasting {
+    public static void main(String[] args) {
+        Animal myAnimal = new Dog(); // Upcasting
+        if (myAnimal instanceof Dog) {
+            Dog myDog = (Dog) myAnimal;
+            myDog.bark();
+        } else {
+            System.out.println("The object is not an instance of Dog.");
+        }
+    }
+}
+```
+
+The previous example can be simplified by using `pattern variable`:
+```java
+public class TestCasting {
+    public static void main(String[] args) {
+        Animal myAnimal = new Dog();
+        if (myAnimal instanceof Dog myDog) {
+            myDog.bark();
+        } else {
+            System.out.println("The object is not an instance of Dog.");
+        }
+    }
+}
+```
+
+#### Best Practices and Considerations
+- **Use instanceof Before Downcasting**:<br/>
+    Always use instanceof to check the type before performing a downcast to prevent runtime exceptions.
+
+
+- **Prefer Polymorphism to Casting**:<br.>
+    Whenever possible, design your code to make use of polymorphism and method overriding to avoid the need for explicit casting.
+
+
+- **Understand the Class Hierarchy**:<br/> 
+    Be mindful of the class hierarchy when casting, especially in complex hierarchies, to ensure that your casts are logical and safe.
+
 ## 3. Limitations of Inheritance in Java
 Java's approach to inheritance includes a key restriction: it does not support multiple inheritance from classes. 
 This means that a class in Java can only extend one other class. 
