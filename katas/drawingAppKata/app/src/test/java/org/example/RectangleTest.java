@@ -19,4 +19,12 @@ public class RectangleTest {
         Assertions.assertEquals(16.0, rectangle.getPerimeter());
     }
 
+    @Test
+    void draw_the_rectangle() {
+        Rectangle rectangle = new Rectangle(2.0, 6.0);
+        Assertions.assertEquals("this is rectangle with dimension : 2.0 x 6.0\n" +
+                "this is rectangle with area : 12.0\n" +
+                "this is rectangle with perimeter : 16.0", rectangle.draw());
+    }
+
 }
